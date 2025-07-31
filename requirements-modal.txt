@@ -1,0 +1,4 @@
+# Modal Labs Requirements
+# Dependencies for local Modal client setup
+
+modal>=0.64.0

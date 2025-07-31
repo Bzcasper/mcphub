@@ -1,0 +1,21 @@
+{
+  "systemConfig": {
+    "smartRouting": {
+      "enabled": true,
+      "dbUrl": "postgresql://localhost:5432/mcphub",
+      "embeddingService": "modal",
+      "embeddingModel": "nvidia/NV-Embed-v2",
+      "embeddingDimensions": 1024,
+      "useLocalEmbeddings": false,
+      "rerankerEnabled": true,
+      "rerankerModel": "BAAI/bge-reranker-v2-m3",
+      "rerankerTopK": 50,
+      "rerankerFinalK": 10,
+      "modalEmbeddingUrl": "https://your-username--enhanced-embedding-service-fastapi-app.modal.run",
+      "openaiApiKey": "modal-key",
+      "openaiApiEmbeddingModel": "nvidia/NV-Embed-v2"
+    }
+  },
+  "servers": [],
+  "groups": []
+}

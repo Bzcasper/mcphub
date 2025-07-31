@@ -1,0 +1,34 @@
+[Unit]
+Description=Enhanced Embedding Service (NVIDIA NV-Embed-v2 + Reranker)
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=%i
+Group=%i
+WorkingDirectory=/home/bobby/projects/mcphub
+Environment=PATH=/home/bobby/projects/mcphub/venv-embedding/bin
+Environment=PYTHONPATH=/home/bobby/projects/mcphub/venv-embedding/lib/python3.11/site-packages
+Environment=HOST=0.0.0.0
+Environment=PORT=8000
+Environment=WORKERS=1
+ExecStart=/home/bobby/projects/mcphub/venv-embedding/bin/python enhanced_embedding_service.py
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=enhanced-embedding
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=16G
+
+# Security settings
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/home/bobby/projects/mcphub
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,33 @@
+
+# 2025-07-30 23:13:44.709501
++fix my reposiotry set up
+
+# 2025-07-30 23:14:03.870412
++i mean caerfully push all changes to orgin without losing any datat
+
+# 2025-07-30 23:14:08.956718
++/run git add .
+
+# 2025-07-30 23:14:08.956752
++/run git add .
+
+# 2025-07-30 23:14:11.930452
++/run git commit -m "Your commit message"
+
+# 2025-07-30 23:14:11.930494
++/run git commit -m "Your commit message"
+
+# 2025-07-30 23:14:13.702722
++/run git pull origin $(git rev-parse --abbrev-ref HEAD)
+
+# 2025-07-30 23:14:13.702763
++/run git pull origin $(git rev-parse --abbrev-ref HEAD)
+
+# 2025-07-30 23:14:15.764479
++/run git push origin $(git rev-parse --abbrev-ref HEAD)
+
+# 2025-07-30 23:14:15.764524
++/run git push origin $(git rev-parse --abbrev-ref HEAD)
+
+# 2025-07-30 23:14:34.134573
++you must make a fork
