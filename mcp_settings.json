@@ -1,45 +1,370 @@
 {
   "mcpServers": {
-    "amap": {
+    "deepwiki": {
+      "type": "sse",
+      "url": "https://mcp.deepwiki.com/sse",
+      "alwaysAllow": [
+        "ask_question"
+      ],
+      "disabled": false
+    },
+    "n8n-mcp": {
       "command": "npx",
       "args": [
         "-y",
-        "@amap/amap-maps-mcp-server"
+        "n8n-mcp@2.12.2"
       ],
       "env": {
-        "AMAP_MAPS_API_KEY": "your-api-key"
-      }
+        "N8N_API_URL": "${N8N_API_URL}",
+        "N8N_API_KEY": "${N8N_API_KEY}",
+        "LOG_LEVEL": "error"
+      },
+      "alwaysAllow": [
+        "n8n_health_check",
+        "validate_workflow",
+        "n8n_create_workflow",
+        "n8n_list_workflows",
+        "n8n_update_partial_workflow",
+        "tools_documentation",
+        "n8n_get_workflow",
+        "n8n_update_full_workflow",
+        "get_templates_for_task",
+        "search_nodes",
+        "get_node_essentials",
+        "validate_node_minimal",
+        "n8n_diagnostic",
+        "n8n_get_workflow_minimal",
+        "validate_workflow_connections",
+        "n8n_validate_workflow",
+        "n8n_validate_workflow_connections",
+        "validate_workflow_expressions",
+        "validate_node_operation",
+        "n8n_trigger_webhook_workflow",
+        "n8n_list_executions"
+      ],
+      "disabled": false
     },
-    "playwright": {
+    "tavily": {
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest",
-        "--headless"
+        "-y",
+        "tavily-mcp@0.2.3"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
+      },
+      "alwaysAllow": [
+        "tavily-search"
       ]
     },
-    "fetch": {
+    "time": {
       "command": "uvx",
       "args": [
-        "mcp-server-fetch"
+        "mcp-server-time"
+      ],
+      "alwaysAllow": [
+        "get_current_time",
+        "convert_time"
       ]
     },
-    "slack": {
+    "cloudinary-asset-mgmt": {
       "command": "npx",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-slack"
+        "--package",
+        "@cloudinary/asset-management",
+        "--",
+        "mcp",
+        "start"
       ],
       "env": {
-        "SLACK_BOT_TOKEN": "your-bot-token",
-        "SLACK_TEAM_ID": "your-team-id"
+        "CLOUDINARY_CLOUD_NAME": "${CLOUDINARY_CLOUD_NAME}",
+        "CLOUDINARY_API_KEY": "${CLOUDINARY_API_KEY}",
+        "CLOUDINARY_API_SECRET": "${CLOUDINARY_API_SECRET}"
       }
+    },
+    "cloudinary-env-config": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "--package",
+        "@cloudinary/environment-config",
+        "--",
+        "mcp",
+        "start"
+      ],
+      "env": {
+        "CLOUDINARY_CLOUD_NAME": "${CLOUDINARY_CLOUD_NAME}",
+        "CLOUDINARY_API_KEY": "${CLOUDINARY_API_KEY}",
+        "CLOUDINARY_API_SECRET": "${CLOUDINARY_API_SECRET}"
+      }
+    },
+    "cloudinary-smd": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "--package",
+        "@cloudinary/structured-metadata",
+        "--",
+        "mcp",
+        "start"
+      ],
+      "env": {
+        "CLOUDINARY_CLOUD_NAME": "${CLOUDINARY_CLOUD_NAME}",
+        "CLOUDINARY_API_KEY": "${CLOUDINARY_API_KEY}",
+        "CLOUDINARY_API_SECRET": "${CLOUDINARY_API_SECRET}"
+      }
+    },
+    "cloudinary-analysis": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "--package",
+        "@cloudinary/analysis",
+        "--",
+        "mcp",
+        "start"
+      ],
+      "env": {
+        "CLOUDINARY_CLOUD_NAME": "${CLOUDINARY_CLOUD_NAME}",
+        "CLOUDINARY_API_KEY": "${CLOUDINARY_API_KEY}",
+        "CLOUDINARY_API_SECRET": "${CLOUDINARY_API_SECRET}"
+      }
+    },
+    "nocodetools": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "openapi",
+      "openapi": {
+        "version": "3.1.0",
+        "url": "https://2281a5a294754c19f8c9e2df0be013fb-bobby-casper-4235.aiagentsaz.com/openapi.json"
+      }
+    },
+    "neon-postgres": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://mcp.neon.tech/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NEON_AUTH_TOKEN}"
+      },
+      "options": {
+        "timeout": 10000
+      }
+    },
+    "jina-ai": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "sse",
+      "url": "https://mcp.jina.ai/sse",
+      "headers": {
+        "Authorization": "Bearer ${JINA_API_KEY}"
+      },
+      "keepAliveInterval": 60000
+    },
+    "openrouter": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/0284362b-5b59-4daf-9f61-3e2256cf5b3d/mcp?include_composio_helper_actions=true"
+    },
+    "snowflake": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/03027639-13fd-4114-9640-43781bcfa380/mcp?include_composio_helper_actions=true"
+    },
+    "serp-api": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/6576f7f5-bbab-4960-b60c-92bcb2ace76e/mcp"
+    },
+    "giithub-gist": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/ef45eb04-2401-4a52-9299-2dcf759f4f54/mcp?include_composio_helper_actions=true"
+    },
+    "resend-email": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/fea8da82-6637-4221-b5cc-3d010109b84a/mcp?include_composio_helper_actions=true"
+    },
+    "youtube": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/eb31958c-70d1-4aaa-b408-d4af25e48803/mcp?include_composio_helper_actions=true"
+    },
+    "reddit": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/62d85b45-4dcd-42c7-8b63-e0e96752b325/mcp?include_composio_helper_actions=true"
+    },
+    "facebook": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/90d22516-952b-4107-b810-ed1cd92702d0/mcp?include_composio_helper_actions=true"
+    },
+    "pexels": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/a24cf2b7-989b-4634-9986-ec9bb23c1922/mcp?include_composio_helper_actions=true"
+    },
+    "brave-search": {
+      "enabled": true,
+      "owner": "admin",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "google-vision": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/ba368b63-0682-4a79-93e2-d002bcb81dd5/mcp?include_composio_helper_actions=true"
+    },
+    "replicate": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/8b09ee0f-cae2-4779-af2e-08632d9d47d0/mcp?include_composio_helper_actions=true"
+    },
+    "docker": {
+      "enabled": true,
+      "owner": "admin",
+      "type": "streamable-http",
+      "url": "https://backend.composio.dev/v3/mcp/2c762095-a339-497c-a351-2f78154e10f2/mcp?include_composio_helper_actions=true"
     }
   },
   "users": [
     {
       "username": "admin",
-      "password": "$2b$10$Vt7krIvjNgyN67LXqly0uOcTpN0LI55cYRbcKC71pUDAP0nJ7RPa.",
+      "password": "${ADMIN_PASSWORD_HASH}",
       "isAdmin": true
+    }
+  ],
+  "systemConfig": {
+    "routing": {
+      "enableGlobalRoute": true,
+      "enableGroupNameRoute": true,
+      "enableBearerAuth": false,
+      "bearerAuthKey": "",
+      "skipAuth": true
+    },
+    "install": {
+      "pythonIndexUrl": "",
+      "npmRegistry": "",
+      "baseUrl": "https://mcphub-632194747573.us-central1.run.app"
+    },
+    "smartRouting": {
+      "enabled": true,
+      "dbUrl": "${SMART_ROUTING_DB_URL}",
+      "openaiApiBaseUrl": "https://api.openai.com/v1",
+      "openaiApiKey": "${OPENAI_API_KEY}",
+      "openaiApiEmbeddingModel": "text-embedding-3-small"
+    },
+    "mcpRouter": {
+      "apiKey": "",
+      "referer": "https://www.mcphubx.com",
+      "title": "MCPHub",
+      "baseUrl": "https://api.mcprouter.to/v1"
+    }
+  },
+  "groups": [
+    {
+      "id": "dae77ca2-ccfe-4096-8fe3-48703f9ac0ae",
+      "name": "media-creation",
+      "description": "",
+      "servers": [
+        {
+          "name": "cloudinary-asset-mgmt",
+          "tools": "all"
+        },
+        {
+          "name": "cloudinary-env-config",
+          "tools": "all"
+        },
+        {
+          "name": "cloudinary-smd",
+          "tools": "all"
+        },
+        {
+          "name": "cloudinary-analysis",
+          "tools": "all"
+        },
+        {
+          "name": "nocodetools",
+          "tools": "all"
+        },
+        {
+          "name": "neon-postgres",
+          "tools": "all"
+        },
+        {
+          "name": "youtube",
+          "tools": "all"
+        }
+      ],
+      "owner": "admin"
+    },
+    {
+      "id": "fb0adf3f-f6ed-45f9-882e-e82f94f6f4e7",
+      "name": "content-discovery",
+      "description": "",
+      "servers": [
+        {
+          "name": "tavily",
+          "tools": "all"
+        },
+        {
+          "name": "jina-ai",
+          "tools": "all"
+        },
+        {
+          "name": "serp-api",
+          "tools": "all"
+        },
+        {
+          "name": "reddit",
+          "tools": "all"
+        }
+      ],
+      "owner": "admin"
+    },
+    {
+      "id": "69de8c0e-2029-4219-929f-43fe080cbd1d",
+      "name": "web-search",
+      "description": "",
+      "servers": [
+        {
+          "name": "tavily",
+          "tools": "all"
+        },
+        {
+          "name": "jina-ai",
+          "tools": "all"
+        },
+        {
+          "name": "serp-api",
+          "tools": "all"
+        },
+        {
+          "name": "brave-search",
+          "tools": "all"
+        }
+      ],
+      "owner": "admin"
     }
   ]
 }
